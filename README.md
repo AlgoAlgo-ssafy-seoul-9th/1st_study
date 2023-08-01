@@ -2,22 +2,22 @@
 [1주차] 코딩테스트 준비 1주차
 <br/>
 
-[프로그래머스 python 문제 바로가기](https://school.programmers.co.kr/learn/courses/30/lessons/77485)
+[프로그래머스 python 문제 바로가기](https://school.programmers.co.kr/learn/challenges?order=recent)
 
-[백준 문제집 바로가기](https://www.acmicpc.net/workbook/view/16147)
+[백준 문제집 바로가기](https://www.acmicpc.net/workbook/view/16346)
 
 <br/><br/>
 
-# [백준] 백준 문제1
+# [백준] 어두운 굴다리
 
 <details>
 <summary>접기/펼치기</summary>
 <div markdown="1">
 
-## [성구](./백준%20문제1/성구.py)
+## [성구](./어두운%20굴다리/성구.py)
 ```py
 ```
-## [민웅](./백준%20문제1/민웅.py)
+## [민웅](./어두운%20굴다리/민웅.py)
 ```py
 # 예시
 import sys
@@ -54,35 +54,10 @@ for i in range(N):
 
 print(max(check))
 ```
-## [병국](./백준%20문제1/병국.py)
+## [병국](./어두운%20굴다리/병국.py)
 ```py
 ```
-## [상미](./백준%20문제1/상미.py)
-```py
-```
-
-</div>
-</details>
-
-<br/><br/><br/>
-
-
-# [백준] 문제2
-
-<details>
-<summary>접기/펼치기</summary>
-<div markdown="1">
-
-## [성구](./문제2/성구.py)
-```py
-```
-## [민웅](./문제2/민웅.py)
-```py
-```
-## [병국](./문제2/병국.py)
-```py
-```
-## [상미](./문제2/상미.py)
+## [상미](./어두운%20굴다리/상미.py)
 ```py
 ```
 
@@ -92,22 +67,47 @@ print(max(check))
 <br/><br/><br/>
 
 
-# [백준] 문제3
+# [백준] 겹치는 건 싫어
 
 <details>
 <summary>접기/펼치기</summary>
 <div markdown="1">
 
-## [성구](./문제3/성구.py)
+## [성구](./겹치는%20건%20싫어/성구.py)
 ```py
 ```
-## [민웅](./문제3/민웅.py)
+## [민웅](./겹치는%20건%20싫어/민웅.py)
 ```py
 ```
-## [병국](./문제3/병국.py)
+## [병국](./겹치는%20건%20싫어/병국.py)
 ```py
 ```
-## [상미](./문제3/상미.py)
+## [상미](./겹치는%20건%20싫어/상미.py)
+```py
+```
+
+</div>
+</details>
+
+<br/><br/><br/>
+
+
+# [백준] 비슷한 단어
+
+<details>
+<summary>접기/펼치기</summary>
+<div markdown="1">
+
+## [성구](./비슷한%20단어/성구.py)
+```py
+```
+## [민웅](./비슷한%20단어/민웅.py)
+```py
+```
+## [병국](./비슷한%20단어/병국.py)
+```py
+```
+## [상미](./비슷한%20단어/상미.py)
 ```py
 ```
 
