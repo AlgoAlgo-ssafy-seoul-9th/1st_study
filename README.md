@@ -19,40 +19,29 @@
 ```
 ## [민웅](./어두운%20굴다리/민웅.py)
 ```py
-# 예시
+# 17266_어두운 굴다리
 import sys
+import math
 input = sys.stdin.readline
-# 접하면 안된다 -> 같은 직선상에 있는 같은 기울기 선분도 안된다
 
 N = int(input())
+M = int(input())
 
-nli = list(map(int, input().split()))
+location = list(map(int, input().split()))
 
-check = [0]*50
+case1 = location[0]
+case2 = N-location[-1]
+case3 = 0
 
-for i in range(N):
-    right, left = float('-inf'), float('inf')
-    for j in range(i+1, N):
-        temp = (nli[j] - nli[i]) / (j - i)
-        if nli[j] >= nli[i]:
-            if temp > right:
-                check[i] += 1
-                check[j] += 1
-                right = temp
-        # if j == i+1:
-        #     if nli[j] == nli[i]:
-        #         check[i] += 1
-        #         check[j] += 1
+for i in range(M-1):
+    temp = math.ceil((location[i+1]-location[i])/2)
+    # print(temp)
+    if temp > case3:
+        case3 = temp
 
-    for k in range(i-1, -1, -1):
-        temp = (nli[k] - nli[i]) / (k - i)
-        if nli[k] > nli[i]:
-            if temp < left:
-                check[i] += 1
-                check[k] += 1
-                left = temp
+ans = max(case1,case2,case3)
 
-print(max(check))
+print(ans)
 ```
 ## [병국](./어두운%20굴다리/병국.py)
 ```py
