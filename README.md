@@ -45,6 +45,35 @@ print(ans)
 ```
 ## [병국](./어두운%20굴다리/병국.py)
 ```py
+n = int(input())
+m = int(input())
+arr = list(map(int,input().split()))
+
+answer1 = 0
+
+# n = 1 일때,, 시작점 잡아주는 느낌,,
+if len(arr) == 1:
+    answer1 = max(arr[0] - 0, n - arr[0])
+# n > 1 일때
+else:
+    for i in range(len(arr)):
+        # 시작점
+        if i == 0:
+            answer = arr[i]-0
+        # 끝점
+        elif i == len(arr)-1:
+            answer = n-arr[i]
+        # 중간지점(중요)
+        else:
+            check = (arr[i]-arr[i-1])
+            if check%2:
+                answer = check // 2 +1
+            else:
+                answer = check // 2
+        answer1 = max(answer,answer1)
+print(answer1)
+
+
 ```
 ## [상미](./어두운%20굴다리/상미.py)
 ```py
@@ -100,6 +129,44 @@ print(ans)
 ```
 ## [병국](./겹치는%20건%20싫어/병국.py)
 ```py
+
+# 하나씩 넣을때마다 갯수 체크할까,,
+# n이 총 개수 , k가 허용가능한 개수
+# 이게아니었고,, 시작점이 중요한거,, 그 시작점부터 가장 큰 부분수열,,구하는거
+
+# cnt = 0
+# max_cnt = 0
+# answer_dict = {}
+# for i in range(n):
+#     if arr[i] in answer_dict:
+#         if answer_dict[arr[i]]+1 > k:
+#             break
+#         else:
+#             answer_dict[arr[i]] += 1
+#             cnt += 1
+#     else:
+#         answer_dict[arr[i]] = 1
+#         cnt += 1
+# max_cnt = (max_cnt,cnt)
+
+n, k = map(int,input().split())
+arr = list(map(int,input().split()))
+
+# 투포인터로 풀어볼게요,,
+left,right = 0,0 # 처음엔 0부터 시작합시다..
+counter = [0]*(max(arr)+1) # 항목 개수세어줄 리스트
+answer = 0 # 답
+
+while right < n: # 배열 끝까지 갈때까지할건데,,
+    if counter[arr[right]]<k: # k보다 작다면
+        counter[arr[right]] += 1
+        right += 1
+    else: # k보다커져버렸다면,, 이제 left를 한칸땡겨요
+        counter[arr[left]] -= 1 # 이건빼줘야겠져
+        left += 1
+    answer = max(answer, right-left) #이게 답
+print(answer)
+
 ```
 ## [상미](./겹치는%20건%20싫어/상미.py)
 ```py
