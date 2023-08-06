@@ -225,6 +225,55 @@ for i in range(1, N):
 
 print(temp[0][0])
 print(temp[1][0])
+
+# 2179_비슷한단어_similar-word
+# 67%까지 맞음
+# 길이 같은데 접두사 다른경우 추가
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+
+words = []
+
+for i in range(N):
+    words.append([input().strip(), i])
+
+words.sort(key=lambda x:x[0])
+temp = [words[0], words[1]]
+ans = 0
+
+for i in range(1, N):
+    l1, l2 = len(words[i-1][0]), len(words[i][0])
+    r = min(l1, l2)
+    idx = 0
+    while idx < r:
+        if words[i-1][0][idx] == words[i][0][idx]:
+            idx += 1
+        else:
+            break
+    if idx > ans:
+        temp = [words[i-1], words[i]]
+        temp.sort(key=lambda x: x[1])
+        ans = idx
+    elif idx == ans:  # idx와 ans가 같은 경우를 추가
+        if temp[0][0][:ans] == words[i-1][0][:ans]:
+            sub = [words[i-1], words[i], temp[0], temp[1]]
+            sub.sort(key=lambda x: x[1])
+            if sub[0] == sub[1]:
+                temp = [sub[0], sub[2]]
+            else:
+                temp = [sub[0], sub[1]]
+        else:
+            sub1 = [words[i-1], words[i]]
+            sub1.sort(key=lambda x: x[1])
+            if sub1[0][1] < temp[0][1]:
+                temp = sub1
+            else:
+                continue
+temp.sort(key=lambda x: x[1])
+print(temp[0][0])
+print(temp[1][0])
 ```
 ## [병국](./비슷한%20단어/병국.py)
 ```py
