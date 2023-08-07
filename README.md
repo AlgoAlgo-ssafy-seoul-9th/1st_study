@@ -276,7 +276,7 @@ nums = list(map(int, input().split()))
 start = end = 0
 arr = [0] * 200001  # 숫자 개수 확인용 배열
 ans = 0
-cnt = 0     # 
+cnt = 0     
 
 while end < N:
     if arr[nums[end]] < K:
