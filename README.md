@@ -1,4 +1,5 @@
 # 1st_study
+
 [1주차] 코딩테스트 준비 1주차
 <br/>
 
@@ -15,9 +16,30 @@
 <div markdown="1">
 
 ## [성구](./어두운%20굴다리/성구.py)
+
 ```py
+# 17266 어두운 굴다리
+import sys
+import math
+input = sys.stdin.readline
+# input
+N = int(input())
+M = int(input())
+x = list(map(int, input().split()))
+# define
+distance = [x[0]]
+# logic
+# 각 가로등 사이의 거리, 양쪽 사이드와의 거리 중 가장 긴거 찾기
+# 각 가로등 사이의 거리는 1/2 값으로 정의
+for i in range(M-1):
+    distance.append((x[i+1]-x[i])/2)
+distance.append(N - x[-1])
+# 소수점 자리를 고려하여 올림 max.ceil
+print(math.ceil(max(distance)))
 ```
+
 ## [민웅](./어두운%20굴다리/민웅.py)
+
 ```py
 # 17266_어두운 굴다리
 import sys
@@ -43,7 +65,9 @@ ans = max(case1,case2,case3)
 
 print(ans)
 ```
+
 ## [병국](./어두운%20굴다리/병국.py)
+
 ```py
 n = int(input())
 m = int(input())
@@ -75,15 +99,17 @@ print(answer1)
 
 
 ```
+
 ## [상미](./어두운%20굴다리/상미.py)
+
 ```py
+
 ```
 
 </div>
 </details>
 
 <br/><br/><br/>
-
 
 # [백준] 겹치는 건 싫어
 
@@ -92,9 +118,65 @@ print(answer1)
 <div markdown="1">
 
 ## [성구](./겹치는%20건%20싫어/성구.py)
+
 ```py
+# 20922 겹치는 건 싫어
+import sys
+input = sys.stdin.readline
+#input
+N, K = map(int, input().split())
+arr = list(map(int, input().split()))
+# define
+i, j = 0, 0
+check = [0] * 100001
+maxCount = -1
+
+# logic
+while j < N:
+    # 작을 때는 상관없음, 카운트
+    if check[arr[j]] < K:
+        check[arr[j]] += 1
+        j += 1
+    else: # 크거나 같으면 왼쪽 포인터 증가로 길이 줄어듦
+        check[arr[i]] -= 1
+        i += 1
+    # max 저장
+    maxCount = max(maxCount, j - i)
+
+print(maxCount)
+
+"""
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+N, K = map(int, input().split())
+arr = list(map(int, input().split()))
+
+i = j = 0
+check = defaultdict(int)
+maxLen = -1
+while j < N:
+    if arr[j] in arr[i:j]:
+        check[arr[j]] += 1
+        if check[arr[j]] >= K:
+            i = arr[i : j + 1].index(arr[j]) + 1
+            check[arr[j]] -= 1
+            if N - i <= maxLen:
+                break
+    maxLen = max(maxLen, j - i + 1)
+    j += 1
+else:
+    maxLen = max(maxLen, j - i + 1)
+
+print(maxLen) if maxLen != -1 else print(N)
+"""
+
 ```
+
 ## [민웅](./겹치는%20건%20싫어/민웅.py)
+
 ```py
 # 20922_겹치는 건 싫어_Hate-Overlap
 import sys
@@ -127,7 +209,9 @@ while i<=j and j < N:
 
 print(ans)
 ```
+
 ## [병국](./겹치는%20건%20싫어/병국.py)
+
 ```py
 
 # 하나씩 넣을때마다 갯수 체크할까,,
@@ -168,15 +252,17 @@ while right < n: # 배열 끝까지 갈때까지할건데,,
 print(answer)
 
 ```
+
 ## [상미](./겹치는%20건%20싫어/상미.py)
+
 ```py
+
 ```
 
 </div>
 </details>
 
 <br/><br/><br/>
-
 
 # [백준] 비슷한 단어
 
@@ -185,9 +271,53 @@ print(answer)
 <div markdown="1">
 
 ## [성구](./비슷한%20단어/성구.py)
+
 ```py
+# 2179 비슷한 단어
+import sys
+input = sys.stdin.readline
+# input
+N = int(input())
+# define
+words = []
+maxIndex = [0, 0]
+maxValue = 0
+# logic
+for k in range(N):
+    # 입력과 동시에 처리
+    word = input().strip()
+    for s in range(len(words)):
+        for i in range(min(len(word), len(words[s]))):
+            # 다를때만 체크
+            if word[i] != words[s][i]:
+                # 작을 때와 같을 때 구분하여 체크
+                if maxValue < i:
+                    maxValue = i
+                    maxIndex = [s, k]
+                elif maxValue == i:
+                    if maxIndex[0] > s:
+                        maxValue = i
+                        maxIndex = [s, k]
+                break
+        else:
+            # 다 돌고 나왔을 때 경우의 수 체크, 같은 단어는 빼기
+            if word != words[s]:
+                # 길이가 작을 때와 같을 때 나눠서 체크
+                if maxValue < min(len(word), len(words[s])):
+                    maxValue = min(len(word), len(words[s]))
+                    maxIndex = [s, k]
+                elif maxValue == min(len(word), len(words[s])):
+                    if maxIndex[0] > s:
+                        maxValue = min(len(word), len(words[s]))
+                        maxIndex = [s, k]
+
+    words.append(word)
+print(words[maxIndex[0]], words[maxIndex[1]], sep="\n")
+
 ```
+
 ## [민웅](./비슷한%20단어/민웅.py)
+
 ```py
 # 2179_비슷한단어_similar-word
 # 26% 까지 맞음
@@ -275,13 +405,18 @@ temp.sort(key=lambda x: x[1])
 print(temp[0][0])
 print(temp[1][0])
 ```
+
 ## [병국](./비슷한%20단어/병국.py)
+
 ```py
-```
-## [상미](./비슷한%20단어/상미.py)
-```py
+
 ```
 
+## [상미](./비슷한%20단어/상미.py)
+
+```py
+
+```
 
 </div>
 </details>
