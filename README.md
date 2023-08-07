@@ -270,7 +270,27 @@ print(answer)
 ## [상미](./겹치는%20건%20싫어/상미.py)
 
 ```py
+N, K = map(int, input().split())
+nums = list(map(int, input().split()))
 
+start = end = 0
+arr = [0] * 200001  # 숫자 개수 확인용 배열
+ans = 0
+cnt = 0     # 
+
+while end < N:
+    if arr[nums[end]] < K:
+        arr[nums[end]] += 1
+        cnt += 1
+        end += 1
+    else:               # K개 넘어가면 중단
+        ans = max(ans, cnt)     # 최대 cnt로 답 갱신
+        cnt -= 1        # 앞에 꺼 하나 빼기
+        arr[nums[start]] -= 1
+        start += 1
+
+ans = max(ans, cnt)     # 중단한 지점과 마지막 지점 비교 -> 이거 안 해줘서 틀림
+print(ans)
 ```
 
 </div>
