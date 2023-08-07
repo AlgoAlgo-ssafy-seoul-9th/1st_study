@@ -103,6 +103,18 @@ print(answer1)
 ## [상미](./어두운%20굴다리/상미.py)
 
 ```py
+# 17266_ 어두운 굴다리
+
+n = int(input())  # 굴다리의 길이
+m = int(input())  # 가로등의 개수
+light = list(map(int, input().split())) # 가로등의 위치
+
+ans = 0
+for i in range(1, m):
+    ans = max(ans, light[i] - light[i-1])
+
+# 가장 긴 사이거리, 첫 가로등까지 거리, 마지막 가로등까지 거리 
+print(max((ans + 1)//2, light[0] - 0, n - light[-1]))
 
 ```
 
